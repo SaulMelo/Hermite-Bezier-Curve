@@ -31,8 +31,6 @@ public class Bezier extends Bresenham {
                          int x0i, int y0i, 
                          int x1i, int y1i) 
     {       
-
-
         /*------------------ Firt Column --------------------------*/
         int C3x = 2 * x0 - 2 * x1 + x0i + x1i;        // first row
         int C2x = -3 * x0 + 3 * x1 - 2 * x0i - x1i;   // second row
@@ -51,9 +49,13 @@ public class Bezier extends Bresenham {
         return array;
 
     }
-    /*------------------------------------------------------------------------*/
-    //Calculate "z" as 3rd dimension
-    public void two(int x0, int y0, int x1, int y1, int x0i, int y0i, int x1i, int y1i) {
+    /*------------------------------------------------------------------------
+     * Create Steps 
+     * Increasing steps make curve smooth
+     * Calculate "z" as 3rd dimension
+     */
+
+    public void create_steps(int x0, int y0, int x1, int y1, int x0i, int y0i, int x1i, int y1i) {
 
         
         int array[] = compute(x0, y0, x1, y1, x0i, y0i, x1i, y1i);
@@ -92,7 +94,6 @@ public class Bezier extends Bresenham {
                         , array2[j+1][1]
                         , 255, 0, 0);
         }
-        
     }
 }
     

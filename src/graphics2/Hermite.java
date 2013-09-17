@@ -32,7 +32,7 @@ public class Hermite extends Bresenham {
                          int x0i, int y0i,
                          int x1i, int y1i) 
     {   
-        // Compute derivative for Hermite only
+        /*----------- Compute derivative for Hermite only ----------*/
         x0i = x0i - x0;
         x1i = x1i - x1;
         y0i = y0i - y0;
@@ -56,10 +56,12 @@ public class Hermite extends Bresenham {
         return array;
 
     }
-    /*------------------------------------------------------------------------*/
-    //Calculate "z" as 3rd dimension
-
-    public void two(int x0, int y0, int x1, int y1, int x0i, int y0i, int x1i, int y1i) {
+    /*------------------------------------------------------------------------
+     * Create Steps 
+     * Increasing steps make curve smooth
+     * Calculate "z" as 3rd dimension
+     */
+    public void create_steps(int x0, int y0, int x1, int y1, int x0i, int y0i, int x1i, int y1i) {
 
 
         int array[] = compute(x0, y0, x1, y1, x0i, y0i, x1i, y1i);
@@ -94,7 +96,6 @@ public class Hermite extends Bresenham {
         for (int j = 0; j < (int) (1 / step) - 1; j++) {
             bresenhamLine(array2[j][0], array2[j][1], array2[j + 1][0], array2[j + 1][1], 255, 0, 0);
         }
-
     }
 }
     
