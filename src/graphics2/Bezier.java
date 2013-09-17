@@ -50,14 +50,16 @@ public class Bezier extends Bresenham {
 
     }
     /*------------------------------------------------------------------------
-     * Create Steps 
+     * Create Steps Method
      * Increasing steps make curve smooth
      * Calculate "z" as 3rd dimension
      */
 
-    public void create_steps(int x0, int y0, int x1, int y1, int x0i, int y0i, int x1i, int y1i) {
-
-        
+    public void create_steps(int x0, int y0, 
+                             int x1, int y1, 
+                             int x0i, int y0i, 
+                             int x1i, int y1i) 
+    {    
         int array[] = compute(x0, y0, x1, y1, x0i, y0i, x1i, y1i);
         int x, y, z;
         int C0x, C0y, C1x, C1y, C2x, C2y, C3x, C3y;

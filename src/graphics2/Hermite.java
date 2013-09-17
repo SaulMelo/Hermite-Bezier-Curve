@@ -57,17 +57,20 @@ public class Hermite extends Bresenham {
 
     }
     /*------------------------------------------------------------------------
-     * Create Steps 
+     * Create Steps Method
      * Increasing steps make curve smooth
      * Calculate "z" as 3rd dimension
      */
-    public void create_steps(int x0, int y0, int x1, int y1, int x0i, int y0i, int x1i, int y1i) {
 
-
+    public void create_steps(int x0, int y0, 
+                             int x1, int y1, 
+                             int x0i, int y0i, 
+                             int x1i, int y1i) 
+    {    
         int array[] = compute(x0, y0, x1, y1, x0i, y0i, x1i, y1i);
         int x, y, z;
         int C0x, C0y, C1x, C1y, C2x, C2y, C3x, C3y;
-
+        
         C0x = array[0];
         C0y = array[1];
         C1x = array[2];
@@ -76,25 +79,29 @@ public class Hermite extends Bresenham {
         C2y = array[5];
         C3x = array[6];
         C3y = array[7];
-
-        double step = 0.001;
-        int array2[][] = new int[(int) (1 / step)][2];
-        int i = 0;
-
+        
+        double step= 0.001;
+        int array2[][] = new int [(int)(1/step)][2];
+        int i=0;
+        
         for (double u = 0.00; u < 1; u += step) {
             x = (int) (C0x + C1x * u + C2x * u * u + C3x * u * u * u);
             y = (int) (C0y + C1y * u + C2y * u * u + C3y * u * u * u);
-
+            
             array2[i][0] = x;
             array2[i][1] = y;
             i++;
-
+            
             set_pixel(x, y, 255, 0, 0);
-
+               
         }
-
-        for (int j = 0; j < (int) (1 / step) - 1; j++) {
-            bresenhamLine(array2[j][0], array2[j][1], array2[j + 1][0], array2[j + 1][1], 255, 0, 0);
+        
+        for(int j=0; j < (int)(1/step)-1; j++) {
+            bresenhamLine(array2[j][0]
+                        , array2[j][1]
+                        , array2[j+1][0]
+                        , array2[j+1][1]
+                        , 255, 0, 0);
         }
     }
 }
