@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------------
- * Hermite Curve: Drawing Curve using Hermite Algorithm
+ * Bezier Curve: Drawing Curve using Bezier Algorithm
  * 
  * California Lutheran University
  * Advanced Computer Graphics
@@ -8,20 +8,27 @@
 package graphics2;
 
 /*------------------------------------------------------------------------------
- * Class HermiteCurve using Bresenham between points
+ * Class Bezier using Bresenham between points
  */
-public class HermiteCurve extends Bresenham {
+public class Bezier extends Bresenham {
     int prevx;
     int prevy;
     
-    public HermiteCurve(int width_p, int height_p, int r, int g, int b) {
+    public Bezier(int width_p, int height_p, int r, int g, int b) {
 
         super(width_p, height_p, r, g, b);
     }
-    /*------------------------------------------------------------------------*/
-    public int[] one(int x0, int y0, int x1, int y1, int x0i, int y0i, int x1i, int y1i) {
-
-        // calculate also Z 
+    /*------------------------------------------------------------------------
+     * Compute Bezier points
+     */
+    public int[] compute(int x0,  int y0,  
+                         int x1,  int y1, 
+                         int x0i, int y0i, 
+                         int x1i, int y1i) 
+    {
+        
+        
+        // Calculate also Z 
         int C0x = x0;
         int C0y = y0;
 
@@ -40,11 +47,11 @@ public class HermiteCurve extends Bresenham {
 
     }
     /*------------------------------------------------------------------------*/
-
+    //Calculate "z" as 3rd dimension
     public void two(int x0, int y0, int x1, int y1, int x0i, int y0i, int x1i, int y1i) {
-        // calculate "z" as 3rd dimension
+
         
-        int array[] = one(x0, y0, x1, y1, x0i, y0i, x1i, y1i);
+        int array[] = compute(x0, y0, x1, y1, x0i, y0i, x1i, y1i);
         int x, y, z;
         int C0x, C0y, C1x, C1y, C2x, C2y, C3x, C3y;
         
