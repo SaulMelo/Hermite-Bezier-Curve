@@ -11,36 +11,41 @@ package graphics2;
  * Class Bezier using Bresenham between points
  */
 public class Bezier extends Bresenham {
-    int prevx;
-    int prevy;
     
     public Bezier(int width_p, int height_p, int r, int g, int b) {
 
         super(width_p, height_p, r, g, b);
     }
-    /*------------------------------------------------------------------------
-     * Compute Bezier points
-     */
+    /*--------------------------------------------------------------------------
+     *             Compute Bezier Points    
+     *   -----------------     -----------
+     *  |  2  -2   1   1  |   |  x0   y0  |
+     *  | -3   3  -2   1  | * |  x1   y1  | * [t^3 t^2 t 1] = [x, y]
+     *  |  0   0   1   0  |   |  x'0  y'0 |
+     *  |  1   0   0   0  |   |  x'1  y'1 |
+     *   -----------------     -----------
+     *          M	            G
+     -------------------------------------------------------------------------*/
     public int[] compute(int x0,  int y0,  
                          int x1,  int y1, 
                          int x0i, int y0i, 
                          int x1i, int y1i) 
-    {
+    {       
+
+
+        /*------------------ Firt Column --------------------------*/
+        int C3x = 2 * x0 - 2 * x1 + x0i + x1i;        // first row
+        int C2x = -3 * x0 + 3 * x1 - 2 * x0i - x1i;   // second row
+        int C1x = x0i; // end point x
+        int C0x = x0;  // start point x
         
+        /*------------------ Second  Column -----------------------*/
+        int C3y = 2 * y0 - 2 * y1 + y0i + y1i;       // first row
+        int C2y = -3 * y0 + 3 * y1 - 2 * y0i - y1i;  // second row
+        int C1y = y0i; // end point y
+        int C0y = y0;  // start point y
+        /*---------------------------------------------------------*/
         
-        // Calculate also Z 
-        int C0x = x0;
-        int C0y = y0;
-
-        int C1x = x0i;
-        int C1y = y0i;
-
-        int C2x = -3 * x0 + 3 * x1 - 2 * x0i - x1i;
-        int C2y = -3 * y0 + 3 * y1 - 2 * y0i - y1i;
-
-        int C3x = 2 * x0 - 2 * x1 + x0i + x1i;
-        int C3y = 2 * y0 - 2 * y1 + y0i + y1i;
-
         int array[] = {C0x, C0y, C1x, C1y, C2x, C2y, C3x, C3y};
 
         return array;
