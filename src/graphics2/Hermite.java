@@ -18,7 +18,7 @@ public class Hermite extends Bresenham {
     }
     /*--------------------------------------------------------------------------
      *         Compute Hemite points and derivatives 
-     *  +-----------------    +-----------+
+     *  +-----------------+   +-----------+
      *  |  2  -2   1   1  |   |  x0   y0  |
      *  | -3   3  -2   1  | * |  x1   y1  | * [t^3 t^2 t 1] = [x, y]
      *  |  0   0   1   0  |   |  x'0  y'0 |
@@ -27,16 +27,16 @@ public class Hermite extends Bresenham {
      *          M	            G
      -------------------------------------------------------------------------*/
 
-    public int[] compute(int x0, int y0,
+    public int[] cubic(int x0, int y0,
                          int x1, int y1,
                          int x0i, int y0i,
                          int x1i, int y1i) 
     {   
         /*----------- Compute derivative for Hermite only ----------*/
-        x0i = x0i - x0;
-        x1i = x1i - x1;
-        y0i = y0i - y0;
-        y1i = y1i - y1;
+        //x0i = x0i - x0;
+        //x1i = x1i - x1;
+        //y0i = y0i - y0;
+        //y1i = y1i - y1;
 
         /*------------------ Firt Column --------------------------*/
         int C3x = 2 * x0 - 2 * x1 + x0i + x1i;        // first row
@@ -62,12 +62,12 @@ public class Hermite extends Bresenham {
      * Calculate "z" as 3rd dimension
      */
 
-    public void create_steps(int x0, int y0, 
-                             int x1, int y1, 
-                             int x0i, int y0i, 
-                             int x1i, int y1i) 
+    public void steps(int x0, int y0, 
+                      int x1, int y1, 
+                      int x0i, int y0i, 
+                      int x1i, int y1i) 
     {    
-        int array[] = compute(x0, y0, x1, y1, x0i, y0i, x1i, y1i);
+        int array[] = cubic(x0, y0, x1, y1, x0i, y0i, x1i, y1i);
         int x, y, z;
         int C0x, C0y, C1x, C1y, C2x, C2y, C3x, C3y;
         
@@ -96,13 +96,24 @@ public class Hermite extends Bresenham {
                
         }
         
-        for(int j=0; j < (int)(1/step)-1; j++) {
-            bresenhamLine(array2[j][0]
-                        , array2[j][1]
-                        , array2[j+1][0]
-                        , array2[j+1][1]
-                        , 255, 0, 0);
+        int j;
+        
+        for (j = 0; j < (int) (1 / step) - 1; j++) {
+
+            bresenhamLine( array2[j][0]
+                         , array2[j][1]
+                         , array2[j + 1][0]
+                         , array2[j + 1][1]
+                         , 255, 0, 0);
         }
+
+        // Draw the last line to the end point
+        bresenhamLine(  array2[j][0]
+                      , array2[j][1]
+                      , x1
+                      , y1
+                      , 255, 0, 0);
+
     }
 }
     
