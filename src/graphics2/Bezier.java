@@ -89,8 +89,7 @@ public class Bezier extends Bresenham {
             set_pixel(x, y, 255, 0, 0);
         }
 
-        int j;
-        
+        int j;   
         for (j = 0; j < (int) (1 / step) - 1; j++) {
 
             bresenhamLine( array2[j][0]
@@ -99,12 +98,12 @@ public class Bezier extends Bresenham {
                          , array2[j + 1][1]
                          , 255, 0, 0);
         }
-
+        
         // Draw the last line to the end point
         bresenhamLine(  array2[j][0]
                       , array2[j][1]
-                      , x1
-                      , y1
+                      , x2
+                      , y2
                       , 255, 0, 0);
 
     }

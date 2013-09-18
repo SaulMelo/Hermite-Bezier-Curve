@@ -92,7 +92,6 @@ public class Hermite extends Bresenham {
         }
         
         int j;
-        
         for (j = 0; j < (int) (1 / step) - 1; j++) {
 
             bresenhamLine( array2[j][0]
