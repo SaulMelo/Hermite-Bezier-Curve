@@ -32,16 +32,16 @@ public class Bezier extends Bresenham {
             int x2, int y2,
             int x3, int y3) {
         /*------------------ Firt Column --------------------------*/
-        int C3x = (-x0) + (3 * x1) + (-3 * x2) + (x3);   // first row
-        int C2x = (3 * x0) + (-6 * x1) + (3 * x2) + (0);    // second row
-        int C1x = (-3 * x0) + (3 * x1) + (0) + (0);    // third row
-        int C0x = (x0) + (0) + (0) + (0);    // four row
+        int C3x = (-1*x0) + (3*x1)  + (-3*x2) + (1*x3); 
+        int C2x = (3*x0)  + (-6*x1) + (3*x2)  + (0);    
+        int C1x = (-3*x0) + (3*x1)  + (0)     + (0);    
+        int C0x = (1*x0)  + (0)     + (0)     + (0);   
 
         /*------------------ Second  Column -----------------------*/
-        int C3y = (-y0) + (3 * y1) + (-3 * y2) + (y3);   // first row
-        int C2y = (3 * y0) + (-6 * y1) + (3 * y2) + (0);    // second row
-        int C1y = (-3 * y0) + (3 * y1) + (0) + (0);    // third row
-        int C0y = (y0) + (0) + (0) + (0);    // four row        
+        int C3y = (-1*y0) + (3*y1)  + (-3*y2) + (1*y3); 
+        int C2y = (3*y0)  + (-6*y1) + (3*y2)  + (0);    
+        int C1y = (-3*y0) + (3*y1)  + (0)     + (0);    
+        int C0y = (1*y0)  + (0)     + (0)     + (0);        
 
         /*---------------------------------------------------------*/
 
@@ -56,10 +56,10 @@ public class Bezier extends Bresenham {
      * Calculate "z" as 3rd dimension
      */
 
-    public void steps(int x0, int y0,
-                             int x1, int y1,
-                             int x2, int y2,
-                             int x3, int y3) 
+    public void steps( int x0, int y0,
+                       int x1, int y1,
+                       int x2, int y2,
+                       int x3, int y3) 
     {
         int array[] = cubic(x0, y0, x1, y1, x2, y2, x3, y3);
         int x, y, z;
@@ -74,7 +74,7 @@ public class Bezier extends Bresenham {
         C3x = array[6];
         C3y = array[7];
 
-        double step = 1;
+        double step = 0.001;
         int array2[][] = new int[(int) (1 / step)][2];
         int i = 0;
 

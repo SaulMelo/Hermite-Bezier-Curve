@@ -20,35 +20,30 @@ public class Hermite extends Bresenham {
      *         Compute Hemite points and derivatives 
      *  +-----------------+   +-----------+
      *  |  2  -2   1   1  |   |  x0   y0  |
-     *  | -3   3  -2   1  | * |  x1   y1  | * [t^3 t^2 t 1] = [x, y]
+     *  | -3   3  -2  -1  | * |  x1   y1  | * [t^3 t^2 t 1] = [x, y]
      *  |  0   0   1   0  |   |  x'0  y'0 |
      *  |  1   0   0   0  |   |  x'1  y'1 |
      *  +-----------------+   +-----------+
      *          M	            G
      -------------------------------------------------------------------------*/
 
-    public int[] cubic(int x0, int y0,
-                         int x1, int y1,
+    public int[] cubic(  int x0,  int y0,
+                         int x1,  int y1,
                          int x0i, int y0i,
                          int x1i, int y1i) 
     {   
-        /*----------- Compute derivative for Hermite only ----------*/
-        //x0i = x0i - x0;
-        //x1i = x1i - x1;
-        //y0i = y0i - y0;
-        //y1i = y1i - y1;
 
         /*------------------ Firt Column --------------------------*/
-        int C3x = 2 * x0 - 2 * x1 + x0i + x1i;        // first row
-        int C2x = -3 * x0 + 3 * x1 - 2 * x0i - x1i;   // second row
-        int C1x = x0i; // end point x
-        int C0x = x0;  // start point x
+        int C3x = (2*x0)  + (-2*x1) + (1*x0i)  + (1*x1i); 
+        int C2x = (-3*x0) + (3*x1)  + (-2*x0i) + (-1*x1i); 
+        int C1x = (0)     + (0)     + (1*x0i)  + (0); 
+        int C0x = (1*x0)  + (0)     + (0)      + (0);  
 
         /*------------------ Second  Column -----------------------*/
-        int C3y = 2 * y0 - 2 * y1 + y0i + y1i;       // first row
-        int C2y = -3 * y0 + 3 * y1 - 2 * y0i - y1i;  // second row
-        int C1y = y0i; // end point y
-        int C0y = y0;  // start point y
+        int C3y = (2*y0)  + (-2*y1) + (1*y0i)  + (1*y1i); 
+        int C2y = (-3*y0) + (3*y1)  + (-2*y0i) + (-1*y1i); 
+        int C1y = (0)     + (0)     + (1*y0i)  + (0); 
+        int C0y = (1*y0)  + (0)     + (0)      + (0);  
         /*---------------------------------------------------------*/
 
         int array[] = {C0x, C0y, C1x, C1y, C2x, C2y, C3x, C3y};
