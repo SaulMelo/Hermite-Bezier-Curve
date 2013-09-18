@@ -17,7 +17,7 @@ public class Hermite extends Bresenham {
         super(width_p, height_p, r, g, b);
     }
     /*--------------------------------------------------------------------------
-     *         Compute Hemite points and derivatives 
+     *  Compute Hemite Cubic Points Derivatives 
      *  +-----------------+   +-----------+
      *  |  2  -2   1   1  |   |  x0   y0  |
      *  | -3   3  -2  -1  | * |  x1   y1  | * [t^3 t^2 t 1] = [x, y]

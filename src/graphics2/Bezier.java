@@ -17,7 +17,7 @@ public class Bezier extends Bresenham {
         super(width_p, height_p, r, g, b);
     }
     /*--------------------------------------------------------------------------
-     *             Compute Bezier Points    
+     *  Compute Bezier Cubic Points Derivatives 
      *  +-----------------+   +-----------+
      *  | -1   3  -3   1  |   |  x0   y0  |
      *  |  3  -6   3   0  | * |  x1   y1  | * [t^3 t^2 t 1] = [x, y]
