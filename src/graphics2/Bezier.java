@@ -59,7 +59,8 @@ public class Bezier extends Bresenham {
     public void steps( int x0, int y0,
                        int x1, int y1,
                        int x2, int y2,
-                       int x3, int y3) 
+                       int x3, int y3,
+                       double step) 
     {
         int array[] = cubic(x0, y0, x1, y1, x2, y2, x3, y3);
         int x, y, z;
@@ -74,7 +75,6 @@ public class Bezier extends Bresenham {
         C3x = array[6];
         C3y = array[7];
 
-        double step = 0.001;
         int array2[][] = new int[(int) (1 / step)][2];
         int i = 0;
 
