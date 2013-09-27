@@ -31,7 +31,8 @@ public class Hermite extends Bresenham {
                          int x0i, int y0i,
                          int x1i, int y1i) 
     {   
-
+        
+        
         /*------------------ Firt Column --------------------------*/
         int C3x = (2*x0)  + (-2*x1) + (1*x0i)  + (1*x1i); 
         int C2x = (-3*x0) + (3*x1)  + (-2*x0i) + (-1*x1i); 
@@ -99,13 +100,15 @@ public class Hermite extends Bresenham {
                          , array2[j + 1][1]
                          , 255, 0, 0);
         }
-
+      
         // Draw the last line to the end point
-        bresenhamLine(  array2[j][0]
-                      , array2[j][1]
-                      , x1
-                      , y1
-                      , 255, 0, 0);
+
+        /*        bresenhamLine(  array2[j][0]
+         * , array2[j][1]
+         * , x1
+         * , y1
+         * , 255, 0, 0);  */     
+        
 
     }
 }

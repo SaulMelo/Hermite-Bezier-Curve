@@ -99,13 +99,14 @@ public class Bezier extends Bresenham {
                          , 255, 0, 0);
         }
         
+        
         // Draw the last line to the end point
-        bresenhamLine(  array2[j][0]
-                      , array2[j][1]
-                      , x2
-                      , y2
-                      , 255, 0, 0);
-
+        /*        bresenhamLine(  array2[j][0]
+         * , array2[j][1]
+         * , x3
+         * , y3
+         * , 255, 0, 0);*/
+    
     }
 }
     
