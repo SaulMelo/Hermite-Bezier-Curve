@@ -1,7 +1,5 @@
 /*------------------------------------------------------------------------------
  * Hermite Curve: Drawing Curve using Hermite Algorithm
- * 
- * California Lutheran University
  * Advanced Computer Graphics
  * Written by: Kevin T. Duraj
  */
@@ -25,29 +23,24 @@ public class Hermite extends Bresenham {
      *  |  1   0   0   0  |   |  x'1  y'1 |
      *  +-----------------+   +-----------+
      -------------------------------------------------------------------------*/
-
-    public int[] cubic(  int x0,  int y0,
-                         int x1,  int y1,
-                         int x0i, int y0i,
-                         int x1i, int y1i) 
-    {   
-        
+    
+    public int[] cubic(int[] P0, int[] P1, int[] Pi0, int[] Pi1) {   
         
         /*------------------ Firt Column --------------------------*/
-        int C3x = (2*x0)  + (-2*x1) + (1*x0i)  + (1*x1i); 
-        int C2x = (-3*x0) + (3*x1)  + (-2*x0i) + (-1*x1i); 
-        int C1x = (0)     + (0)     + (1*x0i)  + (0); 
-        int C0x = (1*x0)  + (0)     + (0)      + (0);  
+        int C3x = (2*P0[0])  + (-2*P1[0]) + (1*Pi0[0])  + (1*Pi1[0]); 
+        int C2x = (-3*P0[0]) + (3*P1[0])  + (-2*Pi0[0]) + (-1*Pi1[0]); 
+        int C1x = (0)        + (0)        + (1*Pi0[0])  + (0); 
+        int C0x = (1*P0[0])  + (0)        + (0)         + (0);   
 
         /*------------------ Second  Column -----------------------*/
-        int C3y = (2*y0)  + (-2*y1) + (1*y0i)  + (1*y1i); 
-        int C2y = (-3*y0) + (3*y1)  + (-2*y0i) + (-1*y1i); 
-        int C1y = (0)     + (0)     + (1*y0i)  + (0); 
-        int C0y = (1*y0)  + (0)     + (0)      + (0);  
+        int C3y = (2*P0[1])  + (-2*P1[1]) + (1*Pi0[1])  + (1*Pi1[1]); 
+        int C2y = (-3*P0[1]) + (3*P1[1])  + (-2*Pi0[1]) + (-1*Pi1[1]); 
+        int C1y = (0)     + (0)     + (1*Pi0[1])  + (0); 
+        int C0y = (1*P0[1])  + (0)     + (0)      + (0); 
+ 
         /*---------------------------------------------------------*/
 
         int array[] = {C0x, C0y, C1x, C1y, C2x, C2y, C3x, C3y};
-
         return array;
 
     }
@@ -55,15 +48,17 @@ public class Hermite extends Bresenham {
      * Create Steps Method
      * Increasing steps make curve smooth
      * Calculate "z" as 3rd dimension
-     */
-
-    public void steps(int x0, int y0, 
-                      int x1, int y1, 
-                      int x0i, int y0i, 
-                      int x1i, int y1i,
-                      double step) 
+     */ 
+    
+    public void steps(int[] P0, int[] P1, int[] Pi0, int[] Pi1, double step)
     {    
-        int array[] = cubic(x0, y0, x1, y1, x0i, y0i, x1i, y1i);
+        // Compute Vector
+        Pi0[0] = Pi0[0] - P0[0];
+        Pi0[1] = Pi0[1] - P0[1];
+        Pi1[0] = Pi1[0] - P1[0];
+        Pi1[1] = Pi1[1] - P1[1];
+        
+        int array[] = cubic(P0, P1, Pi0, Pi1);
         int x, y, z;
         int C0x, C0y, C1x, C1y, C2x, C2y, C3x, C3y;
         
@@ -103,11 +98,11 @@ public class Hermite extends Bresenham {
       
         // Draw the last line to the end point
 
-        /*        bresenhamLine(  array2[j][0]
-         * , array2[j][1]
-         * , x1
-         * , y1
-         * , 255, 0, 0);  */     
+        bresenhamLine(  array2[j][0]
+         , array2[j][1]
+         , P1[0]
+         , P1[1]
+         , 255, 0, 0);   
         
 
     }

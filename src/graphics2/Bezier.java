@@ -1,7 +1,5 @@
 /*------------------------------------------------------------------------------
  * Bezier Curve: Drawing Curve using Bezier Algorithm
- * 
- * California Lutheran University
  * Advanced Computer Graphics
  * Written by: Kevin T. Duraj
  */
@@ -25,23 +23,20 @@ public class Bezier extends Bresenham {
      *  |  1   0   0   0  |   |  x3   y3  |
      *  +-----------------+   +-----------+
      -------------------------------------------------------------------------*/
-
-    public int[] cubic(int x0, int y0,
-                       int x1, int y1,
-                       int x2, int y2,
-                       int x3, int y3) 
+    
+    public int[] cubic(int[] P0, int[] P1, int[] P2, int[] P3)
     {
         /*------------------ Firt Column --------------------------*/
-        int C3x = (-1*x0) + (3*x1)  + (-3*x2) + (1*x3); 
-        int C2x = (3*x0)  + (-6*x1) + (3*x2)  + (0);    
-        int C1x = (-3*x0) + (3*x1)  + (0)     + (0);    
-        int C0x = (1*x0)  + (0)     + (0)     + (0);   
+          int C3x = (-1*P0[0]) + (3*P1[0])  + (-3*P2[0]) + (1*P3[0]); 
+          int C2x = (3*P0[0])  + (-6*P1[0]) + (3*P2[0])  + (0);    
+          int C1x = (-3*P0[0]) + (3*P1[0])  + (0)        + (0);    
+          int C0x = (1*P0[0])  + (0)        + (0)        + (0);   
 
         /*------------------ Second  Column -----------------------*/
-        int C3y = (-1*y0) + (3*y1)  + (-3*y2) + (1*y3); 
-        int C2y = (3*y0)  + (-6*y1) + (3*y2)  + (0);    
-        int C1y = (-3*y0) + (3*y1)  + (0)     + (0);    
-        int C0y = (1*y0)  + (0)     + (0)     + (0);        
+          int C3y = (-1*P0[1]) + (3*P1[1])  + (-3*P2[1]) + (1*P3[1]); 
+          int C2y = (3*P0[1])  + (-6*P1[1]) + (3*P2[1])  + (0);    
+          int C1y = (-3*P0[1]) + (3*P1[1])  + (0)        + (0);    
+          int C0y = (1*P0[1])  + (0)        + (0)        + (0);           
 
         /*---------------------------------------------------------*/
 
@@ -55,14 +50,9 @@ public class Bezier extends Bresenham {
      * Increasing steps make curve smooth
      * Calculate "z" as 3rd dimension
      */
-
-    public void steps( int x0, int y0,
-                       int x1, int y1,
-                       int x2, int y2,
-                       int x3, int y3,
-                       double step) 
+    public void steps(int[] P0, int[] P1, int[] P2, int[] P3, double step)
     {
-        int array[] = cubic(x0, y0, x1, y1, x2, y2, x3, y3);
+        int array[] = cubic(P0, P1, P2, P3);
         int x, y, z;
         int C0x, C0y, C1x, C1y, C2x, C2y, C3x, C3y;
 
@@ -101,11 +91,12 @@ public class Bezier extends Bresenham {
         
         
         // Draw the last line to the end point
-        /*        bresenhamLine(  array2[j][0]
-         * , array2[j][1]
-         * , x3
-         * , y3
-         * , 255, 0, 0);*/
+        bresenhamLine(  
+           array2[j][0]
+         , array2[j][1]
+         , P3[0]
+         , P3[1]
+         , 255, 0, 0);
     
     }
 }
