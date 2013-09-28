@@ -5,7 +5,7 @@
  */
 package graphics2;
 
-public class Assignment2 {
+public class Curves {
 
     public static void main(String[] args) {
 
